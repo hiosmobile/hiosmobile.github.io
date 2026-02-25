@@ -215,7 +215,6 @@
   margin-right: 12px;
 }
 
-/* Responsive Breakpoint */
 @media (min-width: 768px) {
   .side-rail {
     display: flex; 
