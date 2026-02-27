@@ -226,3 +226,49 @@
     bottom: 30px; 
   }
 }
+
+/* Top App Bar Styling */
+.top-app-bar {
+  height: 60px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  margin-right: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.3s ease;
+}
+
+.back-button:active {
+  background-color: var(--border-color);
+}
+
+.top-bar-title {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.top-bar-wrapper-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+}
