@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 /* Color Variables (Light Mode Default) */
 :root {
   --bg-color: #fdfcff;
@@ -14,6 +16,30 @@
   --sheet-button-bg: #d7e3f8;
   --sheet-button-color: #101c2b;
   --overlay-bg: rgba(0, 0, 0, 0.5);
+  --primary: #0061a6;
+  --onPrimary: #ffffff;
+  --primaryContainer: #d2e4ff;
+  --onPrimaryContainer: #001c37;
+  --secondary: #535f70;
+  --onSecondary: #ffffff;
+  --secondaryContainer: #d7e3f8;
+  --onSecondaryContainer: #101c2b;
+  --tertiary: #6c5778;
+  --onTertiary: #ffffff;
+  --tertiaryContainer: #f3daff;
+  --onTertiaryContainer: #251431;
+  --background: #fdfcff;
+  --onBackground: #1a1c1e;
+  --surface: #fdfcff;
+  --onSurface: #1a1c1e;
+  --outline: #73777f;
+  --surfaceVarient: #dfe2eb;
+  --onSurfaceVarient: #43474e;
+  
+  /* Glass Variables */
+  --glass-tint: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
 }
 
 /* Dark Mode Overrides */
@@ -33,7 +59,42 @@
     --sheet-button-bg: #3c4858;
     --sheet-button-color: #d7e3f8;
     --overlay-bg: rgba(0, 0, 0, 0.7);
+    --primary: #a0c9ff;
+    --onPrimary: #00325a;
+    --primaryContainer: #253141;
+    --onPrimaryContainer: #d2e4ff;
+    --secondary: #bbc7db;
+    --onSecondary: #253141;
+    --secondaryContainer: #3c4858;
+    --onSecondaryContainer: #d7e3f8;
+    --tertiary: #d7bde4;
+    --onTertiary: #3b2947;
+    --tertiaryContainer: #533f5f;
+    --onTertiaryContainer: #f3daff;
+    --background: #1a1c1e;
+    --onBackground: #e3e2e6;
+    --surface: #1a1c1e;
+    --onSurface: #e3e2e6;
+    --outline: #8d9199;
+    --surfaceVarient: #43474e;
+    --onSurfaceVarient: #c3c6cf;
+    
+    /* Dark Mode Glass Tint */
+    --glass-tint: rgba(26, 28, 30, 0.62);
+    --glass-border: rgba(255, 255, 255, 0.08);
   }
+}
+
+/* Global Reset and Font Setting */
+* {
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Google Sans Flex', sans-serif;
+}
+
+html, body {
+  font-family: 'Google Sans Flex', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 /* App Shell */
@@ -41,53 +102,21 @@
   display: flex;
   height: 100vh;
   width: 100vw;
+  box-sizing: border-box;
   overflow: hidden;
-  background-color: var(--bg-color);
+  background-color: var(--background);
   color: var(--text-color);
-  font-family: 'Google Sans Flex', sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease;
 }
 
 /* Content Area */
 .main-content {
   flex-grow: 1;
   position: relative;
-  height: 100vh;
-}
-
-/* Desktop Side Rail */
-.side-rail {
-  display: none;
-  width: 80px;
-  flex-shrink: 0;
-  background-color: var(--rail-bg);
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-  border-right: 1px solid var(--border-color);
-  z-index: 500;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Mobile Bottom Nav */
-.bottom-nav {
-  position: fixed;
-  bottom: 20px; 
-  left: 50%;   
-  transform: translateX(-50%); 
-  width: 90%;       
-  max-width: 400px; 
-  height: 60px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: var(--nav-bg); 
-  border-radius: 60px; 
-  display: flex;
-  justify-content: space-around;
-  align-items: center; 
-  z-index: 1000;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15); 
-  transition: background-color 0.3s ease;
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+  transition: border-radius 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Navigation Items */
@@ -140,7 +169,7 @@
   cursor: pointer;
   z-index: 1001;
   border: none;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, bottom 0.3s ease, right 0.3s ease;
 }
 
 .fab i {
@@ -165,18 +194,22 @@
 
 .bottom-sheet {
   position: fixed;
-  bottom: 0; left: 0; right: 0;
-  background-color: var(--sheet-bg);
+  bottom: 20px;
+  left: 16px;
+  right: 16px;
+  background: var(--glass-tint);
   color: var(--text-color);
-  border-top-left-radius: 28px;
-  border-top-right-radius: 28px;
   padding: 24px;
   z-index: 2001;
-  transform: translateY(100%);
-  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), background-color 0.3s ease, color 0.3s ease;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  transform: translateY(150%);
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease, bottom 0.3s ease;
   max-width: 600px;
   margin: 0 auto;
+  border: 1px solid var(--glass-border);
+  border-radius: 40px;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(18px) saturate(165%);
+  -webkit-backdrop-filter: blur(18px) saturate(165%);
 }
 
 .bottom-sheet.open {
@@ -192,7 +225,7 @@
 
 .bottom-sheet-header h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: normal;
 }
 
@@ -202,29 +235,20 @@
   background-color: var(--sheet-button-bg);
   color: var(--sheet-button-color);
   border: none;
-  border-radius: 16px;
+  border-radius: 40px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(18px) saturate(165%);
+  -webkit-backdrop-filter: blur(18px) saturate(165%);
 }
 
 .sheet-button i {
   margin-right: 12px;
-}
-
-@media (min-width: 768px) {
-  .side-rail {
-    display: flex; 
-  }
-  .bottom-nav {
-    display: none; 
-  }
-  .fab {
-    bottom: 30px; 
-  }
 }
 
 /* Top App Bar Styling */
@@ -270,5 +294,186 @@
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: var(--bg-color);
+  box-sizing: border-box;
+  background-color: var(--background);
+  transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease;
+}
+
+/* =========================================
+   DESKTOP TOP NAV (Original Layout)
+   ========================================= */
+.side-rail {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  height: auto;
+  min-height: 44px; /* Reduced height for a tighter pill look */
+  width: max-content;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0.3em 1em; /* Reduced horizontal padding */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-tint);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(18px) saturate(165%);
+  -webkit-backdrop-filter: blur(18px) saturate(165%);
+}
+
+.side-rail ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 3rem; /* Expanded gap spacing */
+}
+
+.side-rail ul li a {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  padding: 0.3em 0.5em;
+  color: var(--onPrimaryContainer);
+  text-decoration: none;
+  font-weight: 400;
+  border-radius: 20px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.side-rail a:hover {
+  color: var(--secondary);
+}
+
+.side-rail ul li a.active {
+  background-color: var(--primary);
+  color: var(--onPrimary);
+  font-weight: bold;
+}
+
+/* =========================================
+   MOBILE BOTTOM NAV (Imported Layout)
+   ========================================= */
+.bottom-nav {
+  position: fixed;
+  bottom: 20px; 
+  left: 50%;   
+  transform: translateX(-50%); 
+  width: 90%;       
+  max-width: 500px; 
+  height: 60px;
+  border-radius: 100px; 
+  display: flex;
+  justify-content: space-around;
+  align-items: center; 
+  z-index: 1000;
+  box-shadow: var(--glass-shadow);
+  background: var(--glass-tint);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px) saturate(165%);
+  -webkit-backdrop-filter: blur(18px) saturate(165%);
+}
+
+.material-symbols-rounded {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+/* =========================================
+   RESPONSIVE TOGGLES & ULTRA MODERN LAYOUT
+   ========================================= */
+
+/* Mobile Layout (Full Screen) */
+@media (max-width: 767px) {
+  .side-rail {
+    display: none;
+  }
+  
+  /* Make the top app bar sit normally above the content without overlapping */
+  .top-app-bar {
+    position: relative;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    z-index: 1000;
+  }
+
+  /* Invert the rounding: the web content curves inward below the top bar */
+  .main-content, .top-bar-wrapper-container iframe {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    background-color: var(--surface);
+    box-shadow: 0 -4px 24px var(--glass-border);
+    position: relative;
+    z-index: 10;
+  }
+
+  .bottom-sheet {
+    bottom: 100px;
+  }
+}
+
+/* Desktop & Tablet Layout (Floating Island) */
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none; 
+  }
+
+  /* Elevate both app containers into a beautiful canvas */
+  .app-container, .top-bar-wrapper-container {
+    padding: 60px 16px 16px 16px; /* Thick top for integrated nav, thin sides/bottom */
+    background-color: var(--background);
+  }
+
+  /* Transform the content and iframes into rounded floating islands */
+  .main-content, .top-bar-wrapper-container iframe {
+    border-radius: 40px; 
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 32px 64px rgba(0,0,0,0.15); 
+    overflow: hidden; 
+    background-color: var(--surface);
+  }
+
+  /* Float the top navigation seamlessly inside the thick top padding */
+  .side-rail {
+    top: 8px; 
+  }
+
+  /* Transform Top App Bar into a floating pill on desktop to match side rail */
+  .top-bar-wrapper-container .top-app-bar {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 44px;
+    width: max-content;
+    min-width: 300px;
+    justify-content: center;
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    background: var(--glass-tint);
+    backdrop-filter: blur(18px) saturate(165%);
+    -webkit-backdrop-filter: blur(18px) saturate(165%);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .top-bar-wrapper-container .back-button {
+    position: absolute;
+    left: 8px;
+  }
+
+  /* Adjust FAB to stay visually aligned inside the rounded border */
+  .fab {
+    bottom: 40px; 
+    right: 40px;  
+  }
 }
