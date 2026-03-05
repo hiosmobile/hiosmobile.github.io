@@ -26,6 +26,23 @@ export function BottomNav() {
 
 export function SideRail() {
   return (
+    <>
+      {/*Desktop top navigation*/}
+      <div className="side-rail">
+        <ul>
+          {navItems.map((item) => (
+            <li key={`top-${item.path}`}>
+              <NavLink to={item.path}><span className="material-symbols-rounded">{item.icon}</span>{item.label}</NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
+}
+
+/*export function SideRail() {
+  return (
     <aside className="side-rail">
       {navItems.map((item) => (
         <NavLink 
@@ -48,4 +65,4 @@ export function SideRail() {
       ))}
     </aside>
   );
-}
+}*/
