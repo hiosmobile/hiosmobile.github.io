@@ -197,7 +197,7 @@ html, body {
   bottom: 20px;
   left: 16px;
   right: 16px;
-  background: var(--glass-tint);
+  background-color: var(--background);
   color: var(--text-color);
   padding: 24px;
   z-index: 2001;
@@ -208,9 +208,6 @@ html, body {
   border: 1px solid var(--glass-border);
   border-radius: 40px;
   box-shadow: var(--glass-shadow);
-  backdrop-filter: blur(18px) saturate(165%);
-  -webkit-backdrop-filter: blur(18px) saturate(165%);
-  will-change: transform, backdrop-filter;
 }
 
 .bottom-sheet.open {
@@ -310,21 +307,19 @@ html, body {
   transform: translateX(-50%);
   z-index: 1000;
   height: auto;
-  min-height: 44px; /* Reduced height for a tighter pill look */
+  min-height: 44px;
   width: max-content;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0.3em 1em; /* Reduced horizontal padding */
+  max-width: 90vw;
+  margin: 0;
+  padding: 8px 24px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--glass-tint);
+  background-color: var(--background);
   border: 1px solid var(--glass-border);
-  border-radius: 25px;
+  border-radius: 40px;
   box-shadow: var(--glass-shadow);
-  backdrop-filter: blur(18px) saturate(165%);
-  -webkit-backdrop-filter: blur(18px) saturate(165%);
 }
 
 .side-rail ul {
@@ -333,20 +328,27 @@ html, body {
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 3rem; /* Expanded gap spacing */
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.side-rail ul li {
+  margin: 0;
+  padding: 0;
 }
 
 .side-rail ul li a {
   display: flex;
-  width: 100%;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 0.3em 0.5em;
+  padding: 8px 16px;
   color: var(--onPrimaryContainer);
   text-decoration: none;
-  font-weight: 400;
-  border-radius: 20px;
+  font-weight: 500;
+  border-radius: 30px;
   transition: color 0.3s ease, background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .side-rail a:hover {
@@ -376,7 +378,7 @@ html, body {
   align-items: center; 
   z-index: 1000;
   box-shadow: var(--glass-shadow);
-  background: var(--glass-tint);
+  background-color: var(--background);
   border: 1px solid var(--glass-border);
   backdrop-filter: blur(18px) saturate(165%);
   -webkit-backdrop-filter: blur(18px) saturate(165%);
@@ -415,7 +417,6 @@ html, body {
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     background-color: var(--surface);
-    box-shadow: 0 -4px 24px var(--glass-border);
     position: relative;
     z-index: 10;
   }
@@ -433,7 +434,7 @@ html, body {
 
   /* Elevate both app containers into a beautiful canvas */
   .app-container, .top-bar-wrapper-container {
-    padding: 60px 16px 16px 16px; /* Thick top for integrated nav, thin sides/bottom */
+    padding: 72px 16px 16px 16px; /* Thick top for integrated nav, thin sides/bottom */
     background-color: var(--background);
   }
 
@@ -476,7 +477,7 @@ html, body {
 
   /* Adjust FAB to stay visually aligned inside the rounded border */
   .fab {
-    bottom: 40px; 
-    right: 40px;  
+    top: 8px;
+    right: 16px; 
   }
 }
